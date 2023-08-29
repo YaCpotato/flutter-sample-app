@@ -18,17 +18,19 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
-      routes: {
-        '/list': (context) => const MyListPage(title: "List Test"),
-      },
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
-
   final String title;
+
+  static Route<dynamic> route() {
+    return MaterialPageRoute<dynamic>(
+      builder: (_) => const MyHomePage(title: 'Flutter Demo Home Page'),
+    );
+  }
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -74,7 +76,33 @@ class _MyHomePageState extends State<MyHomePage> {
         onPressed: _incrementCounter,
         tooltip: 'Increment',
         child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ),
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            ListTile(
+              title: const Text("Home"),
+              onTap: () {
+                Navigator.of(context).push<dynamic>(
+                  MyHomePage.route(),
+                );
+              },
+            ),
+            ListTile(
+              title: const Text("List Sample"),
+              onTap: () {
+                Navigator.of(context).push<dynamic>(
+                  MyListPage.route(),
+                );
+              },
+            ),
+            ListTile(
+              title: const Text("メニュー3"),
+              onTap: () {},
+            )
+          ],
+        ),
+      ),
     );
   }
 }
