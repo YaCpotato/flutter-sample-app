@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'list.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,6 +18,9 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      routes: {
+        '/list': (context) => const MyListPage(title: "List Test"),
+      },
     );
   }
 }
@@ -56,6 +60,12 @@ class _MyHomePageState extends State<MyHomePage> {
             Text(
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
+            ),
+            ElevatedButton(
+              child: const Text('List Page Sample'),
+              onPressed: () {
+                Navigator.pushNamed(context, '/list');
+              },
             ),
           ],
         ),
