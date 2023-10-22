@@ -66,7 +66,9 @@ class _MyHomePageState extends State<MyHomePage> {
             ElevatedButton(
               child: const Text('List Page Sample'),
               onPressed: () {
-                Navigator.pushNamed(context, '/list');
+                Navigator.of(context).push<dynamic>(
+                  MyListPage.route(),
+                );
               },
             ),
           ],
